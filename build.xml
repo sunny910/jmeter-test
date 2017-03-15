@@ -25,11 +25,24 @@
 		<property name="jmeter.save.saveservice.output_format" value="xml" />
 	</jmeter>
     </target>
+    
+    <path id="xslt.classpath">
+	<fileset dir="${jmeter.home}/lib" includes="xalan*.jar" />
+	<fileset dir="${jmeter.home}/lib" includes="serializer*.jar" />
+    </path>
 
     <target name="report">
-	<xslt in="${jmeter.result.jtlName}"
+	<tstamp>
+	    <format property="report.datestamp" pattern="yyyy/MM/dd HH:mm" />
+	</tstamp>
+	<xslt 
+	      classpathref="xslt.classpath"
+              force="true"
+	      in="${jmeter.result.jtlName}"
 	      out="${jmeter.result.htmlName}"
-  	      style="${jmeter.home}/extras/jmeter-results-detail-report_21.xsl" />
+  	      style="${jmeter.home}/extras/jmeter-results-detail-report_21.xsl">
+	      <param name="dateReport" expression="${report.datestamp}" />
+	</xslt>
 	<copy todir="${jmeter.result.html.dir}" >
 		<fileset dir="${jmeter.home}/extras">
 		    <include name="collapse.png" />
