@@ -6,8 +6,8 @@
     </tstamp>
     
     <property name="jmeter.home" value="/data_b/work/apache-jmeter-3.1" />
-    <property name="jmeter.result.jtl.dir" value="/data_b/work/apache-jmeter-3.1/demo/report/jtl" />
-    <property name="jmeter.result.html.dir" value="/data_b/work/apache-jmeter-3.1/demo/report/html" />
+    <property name="jmeter.result.jtl.dir" value="/root/.jenkins/workspace/jmeter-test/report/jtl" />
+    <property name="jmeter.result.html.dir" value="/root/.jenkins/workspace/jmeter-test/report/html" />
     
     <property name="ReportName" value="TestReport" />
     <property name="jmeter.result.jtlName" value="${jmeter.result.jtl.dir}/${ReportName}${time}.jtl" />
@@ -21,7 +21,7 @@
     <target name="test">
 	<taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" />
 	<jmeter jmeterhome="${jmeter.home}" resultlog="${jmeter.result.jtlName}" >
-		<testplans dir="/data_b/work/apache-jmeter-3.1/demo" includes="*.jmx" />
+		<testplans dir="/root/.jenkins/workspace/jmeter-test" includes="*.jmx" />
 		<property name="jmeter.save.saveservice.output_format" value="xml" />
 	</jmeter>
     </target>
